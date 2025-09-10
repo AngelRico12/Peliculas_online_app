@@ -2,7 +2,8 @@
 import express from 'express';
 import cors from 'cors';
 import {
-  pool
+  pool,
+  crearPelicula
 } from './movieService.js';
 
 const app = express();
@@ -19,6 +20,17 @@ app.use(express.json());
     process.exit(1); // termina la aplicación si falla la conexión
   }
 })();
+
+// Crear película
+app.post('/api/peliculas', async (req, res) => {
+  try {
+    const pelicula = await crearPelicula(req.body);
+    res.status(201).json(pelicula);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 
