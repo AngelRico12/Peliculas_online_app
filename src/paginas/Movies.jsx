@@ -88,6 +88,10 @@ function Movies() {
   );
 }
 
+import {
+
+  crearPelicula
+} from "../servicios/movieService";
 
 
 export default Movies;
