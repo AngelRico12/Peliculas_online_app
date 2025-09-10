@@ -1,12 +1,74 @@
-# React + Vite
+Proyecto de Películas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación fullstack que permite la gestión de películas.
+En esta primera versión se incluye la funcionalidad de crear películas mediante un formulario en React conectado a una API en Node.js/Express con base de datos PostgreSQL.
 
-Currently, two official plugins are available:
+Tecnologías utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Frontend: React, Fetch API
 
-## Expanding the ESLint configuration
+Backend: Node.js, Express, CORS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Base de datos: PostgreSQL
+
+ORM/Driver: pg (node-postgres)
+
+Crear la base de datos en PostgreSQL:
+
+CREATE DATABASE peliculas_db;
+
+CREATE TABLE peliculas (
+  id SERIAL PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  director VARCHAR(255) NOT NULL,
+  descripcion TEXT,
+  anio INT,
+  creado_en TIMESTAMP DEFAULT NOW()
+);
+
+
+nstalación y ejecución
+1. Clonar el repositorio
+git clone https://github.com/AngelRico12/proyecto-peliculas.git
+cd proyecto-peliculas
+
+cd backend
+npm install
+
+
+DB_USER=postgres
+DB_HOST=localhost
+DB_NAME=peliculas_db
+DB_PASSWORD=123456
+DB_PORT=5432
+PORT=3000
+
+
+Iniciar el servidor:
+
+npm run start
+
+
+El backend se ejecutará en:
+ http://localhost:3000
+
+ cd ../frontend
+npm install
+
+
+npm start
+
+
+Endpoints disponibles
+Crear película
+
+POST /api/peliculas
+
+ Request (JSON):
+
+ {
+  "titulo": "Inception",
+  "director": "Christopher Nolan",
+  "descripcion": "Un ladrón que roba secretos a través de los sueños.",
+  "anio": 2010
+}
